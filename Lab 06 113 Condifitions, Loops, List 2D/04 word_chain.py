@@ -1,38 +1,19 @@
 max_word=0
-b=list(map(str,input("Text: ").split()))
-# print(b)
-z=0
+word=1
+b=list(map(str,("SUN TON BOW GOD LOT KID FAX BAT FAT CAR EAT FEE SEA MAP DRY SPY TAP").split()))
 chain=1
-current=0
-stop=len(b)
-count_stop=0
-# for i in range(len(a)):
-while True:
-    
-    a=b[z:len(b)]
-    # print(a)
-    word=1
-    for j in range(len(a)-1):
-        count=0
-        for k in range(len(a[j])):
-            if a[j][k] == a[j+1][k]:
-                count+=1
-            # print("count",a[j],a[j+1],count)
-        z+=1
-        if count>=len(a[j])-2:
-            word+=1
-        else:
-            chain+=1
-            break
-        # print("word",word,count)
-    
+for i in range(len(b)-1):
+    correct_pos=0
+    for j in range(len(b[i])):
+        if b[i][j]==b[i+1][j]:
+            correct_pos+=1
+    # print(b[i],b[i+1],correct_pos)
+    if correct_pos>= len(b[i])-2:
+        word+=1
+    else:
+        word=1
+        chain+=1
     if word> max_word:
         max_word=word
-    # print("max_word",word,max_word)
-    if max_word>current:
-        current=max_word
-        # print("break chain")
-    count_stop+=1
-    if stop == count_stop:
-        break
+    # print(word,max_word)
 print(f"{chain} Chain(s). Maximum length is {max_word} word(s).")
