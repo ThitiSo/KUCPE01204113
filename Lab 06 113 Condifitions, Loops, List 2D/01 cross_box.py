@@ -1,33 +1,8 @@
-a=int(input())
-z=1
-for i in range(a):
-    if i == 0 or i == a-1:
-        #print(i)
-        print("."*a)
-        
-    elif i== (a//2):
-        #print(i)
-        print(".",end="")
-        print(" "*(i-1),end="")
-        print(".",end="")
-        print(" "*(i-1),end="")
-        print(".")
-    elif i>a//2:
-        #print(i)
-        print(".",end="")
-        print(" "*(a-i-2),end="")
-        print(".",end="")
-        print(" "*(1+(i-(a//2)-1)*2),end="")
-        print(".",end="")
-        print(" "*(a-i-2),end="")
-        print(".")  
-        z-=1
-    else:
-        #print(i)
-        print(".",end="")
-        print(" "*(i-1),end="")
-        print(".",end="")
-        print(" "*(abs(a-(i*2))-2),end="")
-        print(".",end="")
-        print(" "*(i-1),end="")
-        print(".")
+n=int(input(""))
+print("."*n)
+for i in range(int((n-3)/2)):
+    print("."+" "*(i)+"."+" "*(n-4-2*i)+"."+" "*(i)+".")
+print("."+" "*int((n-3)/2)+"."+" "*int((n-3)/2)+".")
+for i in range(int((n-5)/2),-1,-1):
+    print("."+" "*(i)+"."+" "*(n-4-2*i)+"."+" "*(i)+".")
+print("."*n)
