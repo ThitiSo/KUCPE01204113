@@ -1,49 +1,29 @@
-a=input("Grid Size: ").split()
+x,y=input(f"Grid Size: ").split()
+x,y=int(x),int(y)
+nom=int(input(f"Number of mine(s): "))
 
-b=int(input("Number of mine(s): "))
-field=[]
-for i in range(int(a[1])):
-    field.append([])
-
-    for j in range (int(a[0])):
-        field[i].append(0)
-for i in range (b):
-    y,x= input(f"Mine#{i+1}: ").split()
-    y, x =int(y),int(x)
-    field[x][y]="X"
-
-
-    if x-1 >= 0:
-        
-        if y-1 >= 0 and type(field[x-1][y-1])== int:
-            # print("just enter")
-            field[x-1][y-1]=field[x-1][y-1]+1
-            # print("I try [x-1][y-1]")
-        if y+1 >= 0 and y+1 <= int(a[0])-1 and type(field[x-1][y+1])== int : 
-            field[x-1][y+1]=field[x-1][y+1]+1
-            # print("I try [x-1][y+1]" )   
-        if  type(field[x-1][y])== int: 
-            field[x-1][y]=field[x-1][y]+1
-            # print("I try [x+1][y]" )     
-    if x+1 > 0 and x+1 <= len(field)-1:
-        if y-1 >= 0 and type(field[x+1][y-1])== int:
-            field[x+1][y-1]=field[x+1][y-1]+1
-            # print("I try [x+1][y-1]" )   
-        if y+1 >= 0 and y+1 <=int(a[0])-1 and type(field[x+1][y+1])== int:
-            field[x+1][y+1]=field[x+1][y+1]+1
-            # print("I try [x+1][y+1]" )  
-        if  type(field[x+1][y])== int:     
-            field[x+1][y]=field[x+1][y]+1
-            # print("I try [x+1][y]" ) 
-    if y-1 >= 0 and type(field[x][y-1])== int:
-        field[x][y-1]=field[x][y-1]+1
-        # print("I try [x][y-1]" ) 
-    if y+1 >= 0 and y+1 <=int(a[0])-1 and type(field[x][y+1])== int:
-        field[x][y+1]=field[x][y+1]+1
-        # print("I try [x][y+1]" )    
-
-for i in field:
+minefield=[]
+for i in range(y):
+    minefield.append([])
+    for j in range(x):
+        minefield[i].append(0)
+# print(minefield)
+for i in range(nom):
+    miney,minex=input(f"Mine#{i+1}: ").split()
+    miney,minex=int(minex),int(miney)
+    minefield[miney][minex]="X"
+    for j in [1,0,-1]:
+        for k in [1,0,-1]:
+            if minex+k>len(minefield[0])-1 or minex+k<0:
+                continue
+            if miney+j>len(minefield)-1 or miney+j<0:
+                continue            
+            try:
+                minefield[miney+j][minex+k]+=1
+            except:
+                pass
+            # print(minefield)
+for i in minefield:
     for j in i:
         print(j,end=" ")
-    print("\n",end="")
-  
+    print("\n",end="") 
